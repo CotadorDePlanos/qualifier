@@ -44,7 +44,7 @@ export const FormStep3 = () => {
     return (
         <Theme>
             <C.Container>
-                <h1>{state.name}, me conta em qual momento você está agora?</h1>
+                <h1>Legal! Para que a gente encontre um plano mais atrativo do que você já tem, no diga qual seu plano de saúde atual?</h1>
 
                 <hr/>
 
@@ -71,7 +71,7 @@ export const FormStep3 = () => {
 
 
 
-                <Link to="/" className="backButton">Voltar</Link>
+                <Link to="/step2" className="backButton">Voltar</Link>
                 <button onClick={handleNextStep}>Próximo</button>
             </C.Container>
         </Theme>

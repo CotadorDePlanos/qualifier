@@ -42,7 +42,6 @@ export const FormStep5 = () => {
                 <SelectOption
                     title="agendamento"
                     description=""
-                    icon=""
                     selected={state.priority === 'APPOINTMENT' }
                     onClick={()=>setPriority('APPOINTMENT')}
                 />
@@ -50,7 +49,6 @@ export const FormStep5 = () => {
                 <SelectOption
                     title="emergencia"
                     description=""
-                    icon=""
                     selected={state.priority === 'EMERGENCY'}
                     onClick={()=>setPriority('EMERGENCY')}
                 />
@@ -58,7 +56,6 @@ export const FormStep5 = () => {
                 <SelectOption
                     title="sirurgia"
                     description=""
-                    icon=""
                     selected={state.priority === 'SURGERY'}
                     onClick={()=>setPriority('SURGERY')}
                 />
@@ -66,13 +63,12 @@ export const FormStep5 = () => {
                 <SelectOption
                     title="gravidez"
                     description=""
-                    icon=""
                     selected={state.priority === 'PREGNANCY'}
                     onClick={()=>setPriority('PREGNANCY')}
                 />
 
-                <Link to="/step2" className="backButton">Voltar</Link>
-                <button onClick={handleNextStep}>Finalizar Cadastro</button>
+                <Link to="/step4" className="backButton">Voltar</Link>
+                <button onClick={handleNextStep}>Próximo</button>
             </C.Container>
         </Theme>
     );

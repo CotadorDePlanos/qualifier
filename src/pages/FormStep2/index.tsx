@@ -45,7 +45,6 @@ export const FormStep2 = () => {
                 <SelectOption
                     title="Não tenho plano de saúde"
                     description=""
-                    icon=""
                     selected={state.hasPlan === 'DONT'}
                     onClick={()=>setHasPlan('DONT')}
                 />
@@ -53,7 +52,6 @@ export const FormStep2 = () => {
                 <SelectOption
                     title="Tenho cartão de beneficios"
                     description=""
-                    icon=""
                     selected={state.hasPlan === 'BENEFITS'}
                     onClick={()=>setHasPlan('BENEFITS')}
                 />
@@ -61,7 +59,6 @@ export const FormStep2 = () => {
                 <SelectOption
                     title="Faço consultas e exames no particular"
                     description=""
-                    icon=""
                     selected={state.hasPlan === 'PARTICULAR'}
                     onClick={()=>setHasPlan('PARTICULAR')}
                 />
@@ -70,7 +67,6 @@ export const FormStep2 = () => {
                 <SelectOption
                     title="Já tenho plano de saúde"
                     description=""
-                    icon=""
                     selected={state.hasPlan === 'ALREADY'}
                     onClick={()=>setHasPlan('ALREADY')}
                 />

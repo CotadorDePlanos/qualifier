@@ -4,7 +4,7 @@ import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
 import { useEffect } from 'react';
 import { SelectOption } from '../../components/SelectOption';
-
+import { ReactComponent as DollarSign } from '../../svgs/dollar-sign.svg';
 
 export const FormStep4 = () => {
     const history = useHistory();
@@ -40,30 +40,27 @@ export const FormStep4 = () => {
                 <hr/>
 
                 <SelectOption
-                    title="Preco"
+                    title="Preço"
                     description=""
-                    icon=""
-                    selected={state.tag.includes('PRICE') }
+                    selected={state.tag === 'PRICE' }
                     onClick={()=>setTag('PRICE')}
                 />
 
                 <SelectOption
-                    title="beneficios"
+                    title="Quero uma melhor rede na minha região"
                     description=""
-                    icon=""
-                    selected={state.tag.includes('ATTENDANCE')}
+                    selected={state.tag === 'ATTENDANCE'}
                     onClick={()=>setTag('ATTENDANCE')}
                 />
 
                 <SelectOption
-                    title="atendimento nacional"
+                    title="Quero a melhor opção de Plano com Atendimento Nacional"
                     description=""
-                    icon=""
-                    selected={state.tag.includes('NATIONAL')}
+                    selected={state.tag === 'NATIONAL'}
                     onClick={()=>setTag('NATIONAL')}
                 />
                 <Link to="/step2" className="backButton">Voltar</Link>
-                <button onClick={handleNextStep}>Finalizar Cadastro</button>
+                <button onClick={handleNextStep}>Próximo</button>
             </C.Container>
         </Theme>
     );

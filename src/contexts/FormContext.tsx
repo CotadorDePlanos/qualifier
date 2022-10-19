@@ -1,5 +1,4 @@
 // Context, Reducer, Provider, Hook
-import { stat } from 'fs';
 import { createContext, ReactNode, useContext, useReducer } from 'react';
 
 type State = {
@@ -15,6 +14,17 @@ type State = {
     priority: 'APPOINTMENT' | 'EMERGENCY' | 'SURGERY' | 'PREGNANCY';
     start: 'NOW' | '3MONTHS' | '6MONTHS';
     postal: string;
+    p18:number;
+    p23:number;
+    p28:number;
+    p33:number;
+    p38:number;
+    p43:number;
+    p48:number;
+    p53:number;
+    p58:number;
+    p59:number;
+
 }
 type Action = {
     type: FormActions;
@@ -38,7 +48,17 @@ const initialData: State = {
     tag: 'PRICE',
     priority: 'APPOINTMENT',
     start: 'NOW', 
-    postal: ''
+    postal: '',
+    p18:0,
+    p23:0,
+    p28:0,
+    p33:0,
+    p38:0,
+    p43:0,
+    p48:0,
+    p53:0,
+    p58:0,
+    p59:0,
 }
 
 // Context
@@ -57,7 +77,18 @@ export enum FormActions {
     setTag,
     setPriority,
     setStart,
-    setPostal
+    setPostal,
+    set18,
+    set23,
+    set28,
+    set33,
+    set38,
+    set43,
+    set48,
+    set53,
+    set58,
+    set59,
+
 }
 const formReducer = (state: State, action: Action) => {
     switch(action.type) {
@@ -85,6 +116,26 @@ const formReducer = (state: State, action: Action) => {
             return {...state, start: action.payload};
         case FormActions.setPostal:
             return {...state, postal: action.payload};
+        case FormActions.set18:
+            return {...state, p18: action.payload};
+        case FormActions.set23:
+            return {...state, p23: action.payload};
+        case FormActions.set28:
+            return {...state, p28: action.payload};
+        case FormActions.set33:
+            return {...state, p33: action.payload};
+        case FormActions.set38:
+            return {...state, p38: action.payload};
+        case FormActions.set43:
+            return {...state, p43: action.payload};
+        case FormActions.set48:
+            return {...state, p48: action.payload};
+        case FormActions.set53:
+            return {...state, p53: action.payload};
+        case FormActions.set58:
+            return {...state, p58: action.payload};
+        case FormActions.set59:
+            return {...state, p59: action.payload};
         default:
             return state;
     }

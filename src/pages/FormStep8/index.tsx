@@ -42,7 +42,6 @@ export const FormStep8 = () => {
                 <SelectOption
                     title="Imediato"
                     description=""
-                    icon=""
                     selected={state.start === 'NOW' }
                     onClick={()=>setStart('NOW')}
                 />
@@ -50,7 +49,6 @@ export const FormStep8 = () => {
                 <SelectOption
                     title="Daqui 3 meses"
                     description=""
-                    icon=""
                     selected={state.start === '3MONTHS'}
                     onClick={()=>setStart('3MONTHS')}
                 />
@@ -58,13 +56,12 @@ export const FormStep8 = () => {
                 <SelectOption
                     title="Daqui 6 meses"
                     description=""
-                    icon=""
                     selected={state.start === '6MONTHS'}
                     onClick={()=>setStart('6MONTHS')}
                 />
 
-                <Link to="/step2" className="backButton">Voltar</Link>
-                <button onClick={handleNextStep}>Finalizar Cadastro</button>
+                <Link to="/step7" className="backButton">Voltar</Link>
+                <button onClick={handleNextStep}>Próximo</button>
             </C.Container>
         </Theme>
     );

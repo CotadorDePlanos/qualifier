@@ -3,6 +3,7 @@ import * as C from './styles';
 import { ReactComponent as ProfileIcon } from '../../svgs/profile.svg';
 import { ReactComponent as BookIcon } from '../../svgs/book.svg';
 import { ReactComponent as MailIcon } from '../../svgs/mail.svg';
+import { ReactComponent as DollarSign } from '../../svgs/dollar-sign.svg';
 
 type Props = {
     title: string;
@@ -20,8 +21,8 @@ export const SidebarItem = ({ title, description, icon, path, active }: Props) =
                     <C.Title>{title}</C.Title>
                     {/* <C.Description>{description}</C.Description> */}
                 </C.Info>
-                {/* <C.IconArea active={active}>
-                    {icon === 'profile' &&
+                {/* <C.IconArea active={active}> */}
+                    {/* {icon === 'profile' &&
                         <ProfileIcon fill="white" width={24} height={24} />
                     }
                     {icon === 'book' &&
@@ -30,7 +31,10 @@ export const SidebarItem = ({ title, description, icon, path, active }: Props) =
                     {icon === 'mail' &&
                         <MailIcon fill="white" width={24} height={24} />
                     }
-                </C.IconArea> */}
+                    {icon === 'dollar-sign' &&
+                        <DollarSign fill="white" width={24} height={24} />
+                    } */}
+                {/* </C.IconArea> */}
                 <C.Point active={active}></C.Point>
             </Link>
         </C.Container>

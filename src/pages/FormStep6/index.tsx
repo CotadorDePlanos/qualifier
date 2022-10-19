@@ -42,7 +42,6 @@ export const FormStep6 = () => {
                 <SelectOption
                     title="para uma pessoa física"
                     description=""
-                    icon=""
                     selected={state.modality === 'CPF' }
                     onClick={()=>setModality('CPF')}
                 />
@@ -50,13 +49,12 @@ export const FormStep6 = () => {
                 <SelectOption
                     title="Para uma empresa"
                     description=""
-                    icon=""
                     selected={state.modality === 'CNPJ'}
                     onClick={()=>setModality('CNPJ')}
                 />
 
-                <Link to="/step2" className="backButton">Voltar</Link>
-                <button onClick={handleNextStep}>Finalizar Cadastro</button>
+                <Link to="/step5" className="backButton">Voltar</Link>
+                <button onClick={handleNextStep}>Próximo</button>
             </C.Container>
         </Theme>
     );
