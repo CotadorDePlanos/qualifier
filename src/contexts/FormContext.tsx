@@ -6,6 +6,7 @@ type State = {
     name: string;
     email: string;
     phone: string;
+    message: boolean;
     modality: 'CPF' | 'CNPJ';
     hasPlan: 'ALREADY'| 'BENEFITS' | 'PARTICULAR' |'DONT';
     operatorName?: string;
@@ -43,6 +44,7 @@ const initialData: State = {
     name: '',
     email: '',
     phone: '',
+    message: false,
     modality: 'CPF',
     hasPlan: 'DONT',
     tag: 'PRICE',
@@ -70,6 +72,7 @@ export enum FormActions {
     setName,
     setEmail,
     setPhone,
+    setMessage,
     setModality,
     setHasPlan,
     setOperatorName,
@@ -100,6 +103,8 @@ const formReducer = (state: State, action: Action) => {
             return {...state, email: action.payload};
         case FormActions.setPhone:
             return {...state, phone: action.payload};
+        case FormActions.setMessage:
+            return {...state, message: action.payload};
         case FormActions.setModality:
             return {...state, modality: action.payload};
         case FormActions.setHasPlan:

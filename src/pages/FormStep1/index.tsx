@@ -36,10 +36,18 @@ export const FormStep1 = () => {
             payload: e.target.value
         });
     }
+
     const handleChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch({
             type: FormActions.setPhone,
             payload: e.target.value
+        });
+    }
+
+    const handleChangeMessage = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch({
+            type: FormActions.setMessage,
+            payload: e.target.checked
         });
     }
 
@@ -73,6 +81,15 @@ export const FormStep1 = () => {
                         type="text"
                         value={state.phone}
                         onChange={handleChangePhone}
+                    />
+                </label>
+
+                <label>
+                    Concordo em receber o contato da AssessioriaBR para realizar minha cotação
+                    <input 
+                        type="checkbox"
+                        checked={state.message}
+                        onChange={handleChangeMessage}
                     />
                 </label>
 
