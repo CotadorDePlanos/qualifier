@@ -82,9 +82,16 @@ export const Row = styled.div`
 `;
 
 export const Right =  styled.div`
-display: flex;
-justify-content: space-around;
-align-items: center
-flex: 1;
-margin: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center
+    flex: 1;
+    margin: 10px;
+    width: 100%;
+`;
+
+export const Left =  styled.div`
+    display: block;
+    text-align: center;
+    width: 100%;
 `;

@@ -34,7 +34,23 @@ export const FormStep7 = () => {
     }, []);
 
     const handleNextStep = () => {
-        history.push('/step7');
+        if(
+            state.p18 === 0 &&
+            state.p23 === 0 &&
+            state.p28 === 0 &&
+            state.p33 === 0 &&
+            state.p38 === 0 &&
+            state.p43 === 0 &&
+            state.p48 === 0 &&
+            state.p53 === 0 &&
+            state.p58 === 0 &&
+            state.p59 === 0 
+        ) {
+            alert('Selecione pelo menos uma pessoa')
+        } else {
+            history.push('/step8');
+        }
+            
     }
 
     const handleClick = (type: 'MINUS' | 'PLUS',value:   'set18' | 'set23' | 'set28' | 'set33' | 'set38' | 'set43' | 'set48' | 'set53' | 'set58' | 'set59') => {
@@ -95,61 +111,61 @@ export const FormStep7 = () => {
                 
                 <div style={{display:'block'}}>
 
-                <C.Row>
-                    <h2>Faixa Etaria</h2>
-                    <h2>Quantidade de Pessoas</h2>
-                </C.Row>
+                    <C.Row>
+                        <h2>Faixa Etaria</h2>
+                        <h2>Quantidade de Pessoas</h2>
+                    </C.Row>
 
-                { ages.map( (element,i) => {
-                    
-                    let aux: 'p18' | 'p23' | 'p28' | 'p33' | 'p38' | 'p43' | 'p48' | 'p53' | 'p58' | 'p59' = element[0]
-                    
-                    return(
-                        <C.Row key={i} >
-                            <div>
-                                <p>{element[2]} a {element[3]}</p>
+                    { ages.map( (element,i) => {
+                        
+                        let aux: 'p18' | 'p23' | 'p28' | 'p33' | 'p38' | 'p43' | 'p48' | 'p53' | 'p58' | 'p59' = element[0]
+                        
+                        return(
+                            <C.Row key={i} >
+                                <C.Left>
+                                    <p>{element[2]} a {element[3]}</p>
+                                </C.Left>
+
+                                <C.Right  >
+                                    <div  onClick={(event: React.MouseEvent<HTMLElement>) => handleClick('MINUS',element[1]) }>
+                                        <C.IconArea><Minus/></C.IconArea>
+                                    </div>
+                                    <div style={{margin:'0px 30px'}}>
+
+                                        <p>
+                                            {state[aux]}
+                                        </p>
+                                    </div>
+                                    <div onClick={(event: React.MouseEvent<HTMLElement>) => handleClick('PLUS',element[1]) }>
+                                        <C.IconArea><Plus/></C.IconArea>
+                                    </div>
+                            </C.Right>
+                            </C.Row>
+                        )
+                    })}
+        
+                    <C.Row key={-1}>
+                        <C.Left>
+                            <p>Acima de 59</p>
+                        </C.Left>
+
+                        <C.Right  >
+                            <div  onClick={(event: React.MouseEvent<HTMLElement>) => handleClick('MINUS','set59') }>
+                                <C.IconArea><Minus/></C.IconArea>
                             </div>
+                            <div style={{margin:'0px 30px'}}>
 
-                            <C.Right  >
-                                <div  onClick={(event: React.MouseEvent<HTMLElement>) => handleClick('MINUS',element[1]) }>
-                                    <C.IconArea><Minus/></C.IconArea>
-                                </div>
-                                <div style={{margin:'0px 30px'}}>
+                                <p>
+                                    {state.p59}
+                                </p>
+                            </div>
+                            <div onClick={(event: React.MouseEvent<HTMLElement>) => handleClick('PLUS','set59') }>
+                                <C.IconArea><Plus/></C.IconArea>
+                            </div>
+                        </C.Right>
+                    </C.Row>
 
-                                    <p>
-                                        {state[aux]}
-                                    </p>
-                                </div>
-                                <div onClick={(event: React.MouseEvent<HTMLElement>) => handleClick('PLUS',element[1]) }>
-                                    <C.IconArea><Plus/></C.IconArea>
-                                </div>
-                           </C.Right>
-                        </C.Row>
-                    )
-                })}
                 </div>
-      
-                <C.Row>
-                    <div>
-                        <p>Acima de 59</p>
-                    </div>
-
-                    <C.Right  >
-                        <div  onClick={(event: React.MouseEvent<HTMLElement>) => handleClick('MINUS','set59') }>
-                            <C.IconArea><Minus/></C.IconArea>
-                        </div>
-                        <div style={{margin:'0px 30px'}}>
-
-                            <p>
-                                {state.p59}
-                            </p>
-                        </div>
-                        <div onClick={(event: React.MouseEvent<HTMLElement>) => handleClick('PLUS','set59') }>
-                            <C.IconArea><Plus/></C.IconArea>
-                        </div>
-                    </C.Right>
-                </C.Row>
-
                 <Link to="/step6" className="backButton">Voltar</Link>
                 <button onClick={handleNextStep}>Próximo</button>
             </C.Container>
