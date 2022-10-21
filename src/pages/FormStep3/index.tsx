@@ -44,7 +44,7 @@ export const FormStep3 = () => {
     return (
         <Theme>
             <C.Container>
-                <h1>Legal! Para que a gente encontre um plano mais atrativo do que você já tem, no diga qual seu plano de saúde atual?</h1>
+                <h1>Legal! Para que a gente encontre um plano mais atrativo do que você já tem, nos diga qual seu plano de saúde atual?</h1>
 
                 <hr/>
 

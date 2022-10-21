@@ -3,10 +3,9 @@ import { useHistory } from 'react-router-dom';
 import * as C from './styles';
 import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
-import { ReactComponent as CheckIcon } from '../../svgs/check.svg'
 import { E164Number } from 'libphonenumber-js/types';
 import Input  from 'react-phone-number-input/input'
-
+import { CheckBox } from '../../components/Checkbox';
 
 
 export const FormStep1 = () => {
@@ -119,20 +118,12 @@ export const FormStep1 = () => {
                         onChange={handleChangePhone}
                     />
                 </label>
-
-                <C.CheckboxContainer 
+                {/*  */}
+                <CheckBox
+                    title='Concordo em receber o contato da AssessioriaBR para realizar minha cotação'
                     checked={state.message}
-                    onClick={() =>{ handleChangeMessage(state.message) }}
-                >
-                    <C.HiddenCheckbox 
-                        onChange={() =>{ handleChangeMessage(state.message) }}
-                        checked={state.message}
-                    />
-                    <C.StyledCheckbox checked={state.message}>
-                    <CheckIcon/>
-                    </C.StyledCheckbox>
-                    <C.Text checked={state.message}>Concordo em receber o contato da AssessioriaBR para realizar minha cotação</C.Text>
-                </C.CheckboxContainer>
+                    callback={handleChangeMessage}
+                />
 
                 <button onClick={handleNextStep}>Próximo</button>
             </C.Container>
