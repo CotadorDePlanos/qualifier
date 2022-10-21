@@ -118,7 +118,7 @@ export const FormStep1 = () => {
                         onChange={handleChangePhone}
                     />
                 </label>
-                {/*  */}
+
                 <CheckBox
                     title='Concordo em receber o contato da AssessioriaBR para realizar minha cotação'
                     checked={state.message}
