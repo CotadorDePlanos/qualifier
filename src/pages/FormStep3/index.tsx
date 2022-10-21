@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import * as C from './styles';
 import { useForm, FormActions } from '../../contexts/FormContext';
@@ -49,10 +49,10 @@ export const FormStep3 = () => {
         });
     }
 
-    const handleOperatorValue = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleOperatorValue = (value: string) => {
         dispatch({
             type: FormActions.setOperatorValue,
-            payload: e.target.value
+            payload: value
         });
     }
 
@@ -117,11 +117,10 @@ export const FormStep3 = () => {
                         type="text"
                         autoFocus
                         value={state.operatorValue}
-                        onChange={handleOperatorValue}
+                        onChange={e => { handleOperatorValue(e.target.value.replace(/\D/,''))}}
+
                     />
                 </label>
-
-
 
                 <Link to="/step2" className="backButton">Voltar</Link>
                 <button onClick={handleNextStep}>Próximo</button>
