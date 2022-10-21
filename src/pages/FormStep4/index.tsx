@@ -4,7 +4,6 @@ import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
 import { useEffect } from 'react';
 import { SelectOption } from '../../components/SelectOption';
-import { ReactComponent as DollarSign } from '../../svgs/dollar-sign.svg';
 
 export const FormStep4 = () => {
     const history = useHistory();

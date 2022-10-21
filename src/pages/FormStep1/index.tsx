@@ -1,8 +1,13 @@
+import { ChangeEvent, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as C from './styles';
 import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
-import { ChangeEvent, useEffect } from 'react';
+import { ReactComponent as CheckIcon } from '../../svgs/check.svg'
+import { E164Number } from 'libphonenumber-js/types';
+import Input  from 'react-phone-number-input/input'
+
+
 
 export const FormStep1 = () => {
     const history = useHistory();
@@ -16,14 +21,41 @@ export const FormStep1 = () => {
     }, []);
 
     const handleNextStep = () => {
-        if(state.name !== '' && state.email !== '' && state.phone !== '') {
+        var pass = true
+        
+        if(state.name === ''){
+            const name = document.getElementById('name') as HTMLInputElement | null;
+            name?.classList.add('required')
+            pass = false
+        }
+        if(state.email === '' || !isValidEmail(state.email)){
+            const email = document.getElementById('email') as HTMLInputElement | null;
+            email?.classList.add('required')
+            pass = false
+        }
+        if(state.phone === '' || !isValidPhone(state.phone)){
+            const phone = document.getElementById('phone') as HTMLInputElement | null;
+            phone?.classList.add('required')
+            pass = false
+        }
+
+        if(pass) {
             history.push('/step2');
         } else {
-            alert("Preencha os dados.");
+            alert('preencha os dados')
         }
+    }
+    
+    function isValidEmail(email: string) {
+        return /\S+@\S+\.\S+/.test(email);
+    }
+
+    function isValidPhone(phone: string) {
+        return String(phone).length === 13 || String(phone).length === 14  
     }
 
     const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+        e.target.classList.remove('required')
         dispatch({
             type: FormActions.setName,
             payload: e.target.value
@@ -31,23 +63,24 @@ export const FormStep1 = () => {
     }
 
     const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+        e.target.classList.remove('required')
         dispatch({
             type: FormActions.setEmail,
             payload: e.target.value
-        });
+        });   
     }
 
-    const handleChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleChangePhone = (value: E164Number | undefined) => {
         dispatch({
             type: FormActions.setPhone,
-            payload: e.target.value
+            payload: value
         });
     }
 
-    const handleChangeMessage = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleChangeMessage = (value: boolean) => {
         dispatch({
             type: FormActions.setMessage,
-            payload: e.target.checked
+            payload: !value
         });
     }
 
@@ -59,6 +92,7 @@ export const FormStep1 = () => {
                 <label>
                     Como Podemos Te Chamar?
                     <input
+                        id='name'
                         type="text"
                         autoFocus
                         value={state.name}
@@ -69,6 +103,7 @@ export const FormStep1 = () => {
                 <label>
                     Qual seu e-mail?
                     <input
+                        id='email'
                         type="email"
                         value={state.email}
                         onChange={handleEmailChange}
@@ -77,21 +112,27 @@ export const FormStep1 = () => {
 
                 <label>
                     Qual seu Telefone?
-                    <input
-                        type="text"
+                    <Input
+                        id='phone'
+                        country="BR"
                         value={state.phone}
                         onChange={handleChangePhone}
                     />
                 </label>
 
-                <label>
-                    Concordo em receber o contato da AssessioriaBR para realizar minha cotação
-                    <input 
-                        type="checkbox"
+                <C.CheckboxContainer 
+                    checked={state.message}
+                    onClick={() =>{ handleChangeMessage(state.message) }}
+                >
+                    <C.HiddenCheckbox 
+                        onChange={() =>{ handleChangeMessage(state.message) }}
                         checked={state.message}
-                        onChange={handleChangeMessage}
                     />
-                </label>
+                    <C.StyledCheckbox checked={state.message}>
+                    <CheckIcon/>
+                    </C.StyledCheckbox>
+                    <C.Text checked={state.message}>Concordo em receber o contato da AssessioriaBR para realizar minha cotação</C.Text>
+                </C.CheckboxContainer>
 
                 <button onClick={handleNextStep}>Próximo</button>
             </C.Container>
