@@ -105,7 +105,7 @@ export const FormStep3 = () => {
                         type="text"
                         autoFocus
                         value={state.operatorName}
-                        onChange={(e)=>{handleOperatorName(e.target.value)}}
+                        onChange={(e)=>{e.target.classList.remove('required'); handleOperatorName(e.target.value);}}
                     />
                 </label>
 
@@ -117,8 +117,7 @@ export const FormStep3 = () => {
                         type="text"
                         autoFocus
                         value={state.operatorValue}
-                        onChange={e => { handleOperatorValue(e.target.value.replace(/\D/,''))}}
-
+                        onChange={e => {e.target.classList.remove('required'); handleOperatorValue(e.target.value.replace(/\D/,''))}}
                     />
                 </label>
 

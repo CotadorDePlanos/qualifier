@@ -47,6 +47,11 @@ export const Container = styled.div`
         margin-top: 30px;
     }
 
+    .required {
+        border: 2px solid;
+        border-color: red;
+    }
+
     .backButton {
         font-size: 16px;
         text-decoration: none;

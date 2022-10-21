@@ -48,7 +48,7 @@ export const Container = styled.div`
     }
 
     .required {
-        border: 3px solid;
+        border: 2px solid;
         border-color: red;
     }
 `;
