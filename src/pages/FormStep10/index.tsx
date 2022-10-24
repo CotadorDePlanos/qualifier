@@ -125,7 +125,7 @@ export const FormStep10 = () => {
                 <p>o seu cep é <b>{state.postal}</b></p>
 
 
-                <Link to="/step8" className="backButton">Voltar</Link>
+                <Link to="/step9" className="backButton">Voltar</Link>
                 <button onClick={handleNextStep}>Realizar cotação</button>
             </C.Container>
         </Theme>
