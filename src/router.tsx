@@ -9,6 +9,7 @@ import { FormStep6 } from './pages/FormStep6';
 import { FormStep7 } from './pages/FormStep7';
 import { FormStep8 } from './pages/FormStep8';
 import { FormStep9 } from './pages/FormStep9';
+import { FormStep10 } from './pages/FormStep10';
 
 export const Router = () => {
     return (
@@ -22,6 +23,7 @@ export const Router = () => {
             <Route path="/step7" component={FormStep7} />
             <Route path="/step8" component={FormStep8} />
             <Route path="/step9" component={FormStep9} />
+            <Route path="/step10" component={FormStep10} />
         </BrowserRouter>
     );
 }

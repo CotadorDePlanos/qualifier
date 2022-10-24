@@ -2,14 +2,28 @@ import { useHistory, Link } from 'react-router-dom';
 import * as C from './styles';
 import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
-// import { ChangeEvent, useEffect } from 'react';
 import { ChangeEvent, useEffect, useState } from 'react';
+
+type Postal = {
+    bairro?: string;
+    cep?: string;
+    complemento?: string;
+    ddd?: string;
+    gia?: string;
+    ibge?: string;
+    localidade?: string;
+    logradouro?: string;
+    siafi?: string;
+    uf?: string;
+}
 
 
 export const FormStep9 = () => {
     const history = useHistory();
     const { state, dispatch } = useForm();
-    const [ postal, setPostal ] = useState({})
+    const [ postal, setPostal ] = useState<Postal>({});
+    const [ valid, setValid ] = useState(false);
+
 
     useEffect(() => {
         if(state.name === '') {
@@ -23,7 +37,11 @@ export const FormStep9 = () => {
     }, []);
 
     const handleNextStep = () => {
-        history.push('/');
+        if(valid){
+            history.push('/step10');
+        } else {
+            alert('digite um cep valido')
+        }
     }
 
     const handleChangePostal = (e: ChangeEvent<HTMLInputElement>) => {
@@ -44,11 +62,13 @@ export const FormStep9 = () => {
             if(response.status === 200){
                return response.json()
             } else {
+                setValid(false)
                 return {}
             }
         })
         .then(data => {
             setPostal(data)
+            setValid(true)
         });
     }
 
@@ -65,6 +85,10 @@ export const FormStep9 = () => {
                         onChange={handleChangePostal}
                     />
                 </label>
+
+                { Object.keys(postal).length > 0 && 
+                    <p>{postal?.localidade}</p>
+                }
                 
                 <Link to="/step8" className="backButton">Voltar</Link>
                 <button onClick={handleNextStep}>Próximo</button>

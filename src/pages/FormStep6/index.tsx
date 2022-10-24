@@ -22,7 +22,7 @@ export const FormStep6 = () => {
     }, []);
 
     const handleNextStep = () => {
-        history.push('/step8');
+        history.push('/step7');
     }
 
     const setModality = (modality: 'CPF' | 'CNPJ') => {
