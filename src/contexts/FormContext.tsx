@@ -1,20 +1,21 @@
 // Context, Reducer, Provider, Hook
 import { createContext, ReactNode, useContext, useReducer } from 'react';
 
-type State = {
+export type State = {
     currentStep: number;
     name: string;
     email: string;
     phone: string;
     message: boolean;
-    modality: 'CPF' | 'CNPJ';
+    modality: 'PF' | 'PJ';
     hasPlan: 'ALREADY'| 'BENEFITS' | 'PARTICULAR' |'DONT';
     operatorName?: string;
     operatorValue?: string;
-    tag: 'PRICE' | 'ATTENDANCE'| 'NATIONAL';
+    tag: 'PRICE' | 'REGIONAL'| 'NATIONAL';
     priority: 'APPOINTMENT' | 'EMERGENCY' | 'SURGERY' | 'PREGNANCY';
     start: 'NOW' | '3MONTHS' | '6MONTHS';
     postal: string;
+    city: string;
     p18:number;
     p23:number;
     p28:number;
@@ -45,12 +46,13 @@ const initialData: State = {
     email: '',
     phone: '',
     message: false,
-    modality: 'CPF',
+    modality: 'PF',
     hasPlan: 'DONT',
     tag: 'PRICE',
     priority: 'APPOINTMENT',
     start: 'NOW', 
     postal: '',
+    city: '',
     p18:0,
     p23:0,
     p28:0,
@@ -81,6 +83,7 @@ export enum FormActions {
     setPriority,
     setStart,
     setPostal,
+    setCity,
     set18,
     set23,
     set28,
@@ -121,6 +124,8 @@ const formReducer = (state: State, action: Action) => {
             return {...state, start: action.payload};
         case FormActions.setPostal:
             return {...state, postal: action.payload};
+        case FormActions.setCity:
+            return {...state, city: action.payload};
         case FormActions.set18:
             return {...state, p18: action.payload};
         case FormActions.set23:

@@ -3,6 +3,7 @@ import { useHistory, Link } from 'react-router-dom';
 import * as C from './styles';
 import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
+import { SendForm } from '../../api';
 
 export const FormStep3 = () => {
     const history = useHistory();
@@ -36,6 +37,7 @@ export const FormStep3 = () => {
         }
 
         if(pass) {
+            SendForm(state)
             history.push('/step4');
         } else {
             alert('preencha os dados')

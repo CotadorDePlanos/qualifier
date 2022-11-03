@@ -4,7 +4,7 @@ import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
 import { useEffect } from 'react';
 import { SelectOption } from '../../components/SelectOption';
-
+import { SendForm } from '../../api';
 
 export const FormStep5 = () => {
     const history = useHistory();
@@ -22,6 +22,7 @@ export const FormStep5 = () => {
     }, []);
 
     const handleNextStep = () => {
+        SendForm(state)
         history.push('/step6');
     }
 

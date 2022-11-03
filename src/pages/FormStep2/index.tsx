@@ -4,6 +4,7 @@ import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
 import { useEffect } from 'react';
 import { SelectOption } from '../../components/SelectOption';
+import { SendForm } from '../../api';
 
 export const FormStep2 = () => {
     const history = useHistory();
@@ -22,8 +23,10 @@ export const FormStep2 = () => {
 
     const handleNextStep = () => {
         if(state.hasPlan === 'ALREADY') {
+            SendForm(state)
             history.push('/step3');
         } else {
+            SendForm(state)
             history.push('/step4');
         }
     }

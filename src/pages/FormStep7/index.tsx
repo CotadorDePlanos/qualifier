@@ -3,6 +3,7 @@ import * as C from './styles';
 import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
 import { useEffect } from 'react';
+import { SendForm } from '../../api';
 import { ReactComponent as Minus } from '../../svgs/minus.svg'
 import { ReactComponent as Plus } from '../../svgs/plus.svg'
 
@@ -48,13 +49,13 @@ export const FormStep7 = () => {
         ) {
             alert('Selecione pelo menos uma pessoa')
         } else {
+            SendForm(state)
             history.push('/step8');
         }
             
     }
 
     const handleClick = (type: 'MINUS' | 'PLUS',value:   'set18' | 'set23' | 'set28' | 'set33' | 'set38' | 'set43' | 'set48' | 'set53' | 'set58' | 'set59') => {
-        console.log(state.p18)
         let current = 0
         switch(value){
             case 'set18':
@@ -95,7 +96,6 @@ export const FormStep7 = () => {
             current -= 1 
 
         }
-        console.log(state.p18, current)
         dispatch({
             type: FormActions[value],
             payload: current

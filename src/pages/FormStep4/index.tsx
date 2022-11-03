@@ -4,6 +4,7 @@ import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
 import { useEffect } from 'react';
 import { SelectOption } from '../../components/SelectOption';
+import { SendForm } from '../../api';
 
 export const FormStep4 = () => {
     const history = useHistory();
@@ -21,10 +22,11 @@ export const FormStep4 = () => {
     }, []);
 
     const handleNextStep = () => {
+        SendForm(state)
         history.push('/step5');
     }
 
-    const setTag = (tag: 'PRICE' | 'ATTENDANCE'| 'NATIONAL') => {
+    const setTag = (tag: 'PRICE' | 'REGIONAL'| 'NATIONAL') => {
         dispatch({
             type: FormActions.setTag,
             payload: tag
@@ -48,8 +50,8 @@ export const FormStep4 = () => {
                 <SelectOption
                     title="Quero uma melhor rede na minha região"
                     description=""
-                    selected={state.tag === 'ATTENDANCE'}
-                    onClick={()=>setTag('ATTENDANCE')}
+                    selected={state.tag === 'REGIONAL'}
+                    onClick={()=>setTag('REGIONAL')}
                 />
 
                 <SelectOption

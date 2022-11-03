@@ -6,7 +6,7 @@ import { Theme } from '../../components/Theme';
 import { E164Number } from 'libphonenumber-js/types';
 import Input  from 'react-phone-number-input/input'
 import { CheckBox } from '../../components/Checkbox';
-
+import { SendForm } from '../../api/index'
 
 export const FormStep1 = () => {
     const history = useHistory();
@@ -39,6 +39,7 @@ export const FormStep1 = () => {
         }
 
         if(pass) {
+            SendForm(state)
             history.push('/step2');
         } else {
             alert('preencha os dados')

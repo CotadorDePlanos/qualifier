@@ -3,6 +3,7 @@ import * as C from './styles';
 import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
 import { ChangeEvent, useEffect, useState } from 'react';
+import { SendForm } from '../../api'
 
 type Postal = {
     bairro?: string;
@@ -38,6 +39,7 @@ export const FormStep9 = () => {
 
     const handleNextStep = () => {
         if(valid){
+            SendForm(state)
             history.push('/step10');
         } else {
             alert('digite um cep valido')
@@ -56,20 +58,25 @@ export const FormStep9 = () => {
     }
 
 
-    const fetchCep = (postalCode:any) => {
-        fetch('/viacep/'+ postalCode)
-        .then(response => {
-            if(response.status === 200){
-               return response.json()
-            } else {
-                setValid(false)
-                return {}
-            }
-        })
-        .then(data => {
-            setPostal(data)
+    const fetchCep = async (postalCode:any) => {
+        const response = await fetch('/viacep/'+ postalCode)
+        var data;
+        if(response.status === 200){
+            data = await response.json()
+        } else {
+            setValid(false)
+            data = {}
+        }
+ 
+        setPostal(data)
+        const localidade = data?.localidade
+        if (localidade) {
+            dispatch({
+                type: FormActions.setCity,
+                payload: localidade
+            });
             setValid(true)
-        });
+        }
     }
 
     return (
@@ -87,7 +94,7 @@ export const FormStep9 = () => {
                 </label>
 
                 { Object.keys(postal).length > 0 && 
-                    <p>{postal?.localidade}</p>
+                    <p>{state.city}</p>
                 }
                 
                 <Link to="/step8" className="backButton">Voltar</Link>

@@ -2,12 +2,14 @@ import { useHistory, Link } from 'react-router-dom';
 import * as C from './styles';
 import { useForm, FormActions } from '../../contexts/FormContext';
 import { Theme } from '../../components/Theme';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { SendForm, SendQuotation } from '../../api';
 
 
 export const FormStep10 = () => {
     const history = useHistory();
     const { state, dispatch } = useForm();
+    const [ quotation, setQuotation ] =   useState<any[]>([]);
 
     useEffect(() => {
         if(state.name === '') {
@@ -20,8 +22,22 @@ export const FormStep10 = () => {
         }
     }, []);
 
-    const handleNextStep = () => {
-        history.push('/');
+    const handleNextStep = async() => {
+        SendForm(state)
+        const response = await requestQuotation()
+        setQuotation( response)
+        // history.push('/');   
+    }
+
+    const requestQuotation = async() => {
+        const data = {
+            city:state.city,
+            type: state.modality,
+            min_people: 1,
+            age_group: [18]
+        } 
+        const response = await SendQuotation(data)
+        return response
     }
 
     const parseHasPlan = (hasPlan : string) => {
@@ -52,7 +68,7 @@ export const FormStep10 = () => {
             case 'PRICE':
                 display = 'preco mais acessivel'
                 break;
-            case 'ATTENDANCE':
+            case 'REGIONAL':
                 display = 'atendimento na minha regiao'
                 break;
             case 'NATIONAL':
@@ -106,6 +122,23 @@ export const FormStep10 = () => {
         return display
     }
 
+    const parseModality = (modality : string) => {
+        var display: string;
+        switch (modality) {
+            case 'PF':
+                display = 'Pessoa Fisica';
+                break;
+            case 'PJ':
+                display = 'Pessoa Juridica';
+                break;
+            
+            default:
+                display =''
+                break;
+        }
+        return display
+    }
+
     return (
         <Theme>
             <C.Container>
@@ -113,7 +146,7 @@ export const FormStep10 = () => {
                 <hr></hr>
                 <p>Seu email é <b>{state.email}</b></p>
                 <p>Seu telefone é <b>{state.phone}</b></p>
-                <p>O plano que esta buscando é para <b>{state.modality}</b></p>
+                <p>O plano que esta buscando é para <b>{parseModality(state.modality)}</b></p>
 
                 <p>Voce atualmente <b>{parseHasPlan(state.hasPlan)}</b></p>
                 {state.hasPlan === 'ALREADY' && 
@@ -122,11 +155,29 @@ export const FormStep10 = () => {
                 <p>esta buscando no seu plano <b>{parseTag(state.tag)}</b></p>
                 <p>a prioridade é <b>{parsePriority(state.priority)}</b></p>
                 <p>Comecando <b>{parseStart(state.start)}</b></p>
-                <p>o seu cep é <b>{state.postal}</b></p>
-
+                <p>o sua cidade é <b>{state.city}</b></p>
+                <hr/>
+                { quotation.map( (element) =>{
+                    console.log("element",element)
+                    return (
+                        <>
+                            <p>{element.operator} </p>
+                            <p>{element.city} </p>
+                            <p>{element.accommodation} </p>
+                            <p>{element.age_group} </p>
+                            <p>{element.min_people} </p>
+                            <p>{element.name} </p>
+                            <p>{element.price} </p>
+                            <p>{element.state} </p>
+                            <p>{element.tag} </p>
+                            <p>{element.type} </p>
+                        </>
+                    )
+                })}
 
                 <Link to="/step9" className="backButton">Voltar</Link>
                 <button onClick={handleNextStep}>Realizar cotação</button>
+
             </C.Container>
         </Theme>
     );
