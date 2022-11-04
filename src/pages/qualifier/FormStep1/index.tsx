@@ -1,12 +1,12 @@
 import { ChangeEvent, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as C from './styles';
-import { useForm, FormActions } from '../../contexts/FormContext';
-import { Theme } from '../../components/Theme';
+import { useForm, FormActions } from '../../../contexts/FormContext';
+import { Theme } from '../../../components/Theme';
 import { E164Number } from 'libphonenumber-js/types';
 import Input  from 'react-phone-number-input/input'
-import { CheckBox } from '../../components/Checkbox';
-import { SendForm } from '../../api/index'
+import { CheckBox } from '../../../components/Checkbox';
+import { SendForm } from '../../../api/index'
 
 export const FormStep1 = () => {
     const history = useHistory();

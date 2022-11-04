@@ -1,11 +1,11 @@
 import { useHistory, Link } from 'react-router-dom';
 import * as C from './styles';
-import { useForm, FormActions } from '../../contexts/FormContext';
-import { Theme } from '../../components/Theme';
+import { useForm, FormActions } from '../../../contexts/FormContext';
+import { Theme } from '../../../components/Theme';
 import { useEffect } from 'react';
-import { SendForm } from '../../api';
-import { ReactComponent as Minus } from '../../svgs/minus.svg'
-import { ReactComponent as Plus } from '../../svgs/plus.svg'
+import { SendForm } from '../../../api';
+import { ReactComponent as Minus } from '../../../svgs/minus.svg'
+import { ReactComponent as Plus } from '../../../svgs/plus.svg'
 
 const ages : any[] =  [
     ['p18', 'set18', '0', '18'],

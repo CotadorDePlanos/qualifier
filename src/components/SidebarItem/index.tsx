@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import * as C from './styles';
-import { ReactComponent as ProfileIcon } from '../../svgs/profile.svg';
-import { ReactComponent as BookIcon } from '../../svgs/book.svg';
-import { ReactComponent as MailIcon } from '../../svgs/mail.svg';
-import { ReactComponent as DollarSign } from '../../svgs/dollar-sign.svg';
+// import { ReactComponent as ProfileIcon } from '../../svgs/profile.svg';
+// import { ReactComponent as BookIcon } from '../../svgs/book.svg';
+// import { ReactComponent as MailIcon } from '../../svgs/mail.svg';
+// import { ReactComponent as DollarSign } from '../../svgs/dollar-sign.svg';
 
 type Props = {
     title: string;

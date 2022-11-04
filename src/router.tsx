@@ -1,15 +1,15 @@
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import { FormStep1 } from './pages/FormStep1';
-import { FormStep2 } from './pages/FormStep2';
-import { FormStep3 } from './pages/FormStep3';
-import { FormStep4 } from './pages/FormStep4';
-import { FormStep5 } from './pages/FormStep5';
-import { FormStep6 } from './pages/FormStep6';
-import { FormStep7 } from './pages/FormStep7';
-import { FormStep8 } from './pages/FormStep8';
-import { FormStep9 } from './pages/FormStep9';
-import { FormStep10 } from './pages/FormStep10';
+import { FormStep1 } from './pages/qualifier/FormStep1';
+import { FormStep2 } from './pages/qualifier/FormStep2';
+import { FormStep3 } from './pages/qualifier/FormStep3';
+import { FormStep4 } from './pages/qualifier/FormStep4';
+import { FormStep5 } from './pages/qualifier/FormStep5';
+import { FormStep6 } from './pages/qualifier/FormStep6';
+import { FormStep7 } from './pages/qualifier/FormStep7';
+import { FormStep8 } from './pages/qualifier/FormStep8';
+import { FormStep9 } from './pages/qualifier/FormStep9';
+import { FormStep10 } from './pages/qualifier/FormStep10';
 
 export const Router = () => {
     return (
