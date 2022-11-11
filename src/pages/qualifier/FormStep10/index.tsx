@@ -3,7 +3,7 @@ import * as C from './styles';
 import { useForm, FormActions } from '../../../contexts/FormContext';
 import { Theme } from '../../../components/Theme';
 import { useEffect, useState } from 'react';
-import { SendForm, SendQuotation } from '../../../api';
+import { SendForm, GetQuotation, SendPhoneMessage } from '../../../api';
 
 
 export const FormStep10 = () => {
@@ -25,19 +25,56 @@ export const FormStep10 = () => {
     const handleNextStep = async() => {
         SendForm(state)
         const response = await requestQuotation()
-        setQuotation( response)
+        setQuotation( response.result)
+        const msg = parsePhoneMessage(response.result)
+        SendPhoneMessage(state.phone,msg)
         // history.push('/');   
     }
 
     const requestQuotation = async() => {
+        const ageGroup = mountAgeGroup()
         const data = {
             city:state.city,
             type: state.modality,
-            min_people: 1,
-            age_group: [18]
+            minPeople: 1,
+            ageGroup: ageGroup
         } 
-        const response = await SendQuotation(data)
+        const response = await GetQuotation(data)
         return response
+    }
+
+    const mountAgeGroup = () => {
+        let arr = []
+        if(state.p18 > 0) arr.push('18')       
+        if(state.p23 > 0) arr.push('23')       
+        if(state.p28 > 0) arr.push('28')       
+        if(state.p33 > 0) arr.push('33')       
+        if(state.p38 > 0) arr.push('38')       
+        if(state.p43 > 0) arr.push('43')       
+        if(state.p48 > 0) arr.push('48')       
+        if(state.p53 > 0) arr.push('53')       
+        if(state.p59 > 0) arr.push('59')       
+        if(state.p59 > 0) arr.push('59')       
+        return arr
+    }
+
+    const parsePhoneMessage = (plans:Array<any>) => {
+        let text = state.name
+        plans.forEach( (plan) => {
+            let concat = plan.message
+            concat = concat.replace('<name>',plan.name)
+            concat = concat.replace('<operatorName>',plan.operator_name)
+            concat = concat.replace('<city>',plan.city)
+            concat = concat.replace('<state>',plan.state)
+            concat = concat.replace('<minPeople>',plan.min_people)
+            concat = concat.replace('<price>',plan.price)
+            concat = concat.replace('<ageGroup>',plan.age_group)
+            concat = concat.replace('<tag>',plan.tag)
+            concat = concat.replace('<type>',plan.type)
+            concat = concat.replace('<accommodation>',plan.accommodation) + '\n\n'
+            text += concat
+        })
+        return text
     }
 
     const parseHasPlan = (hasPlan : string) => {
@@ -157,10 +194,9 @@ export const FormStep10 = () => {
                 <p>Comecando <b>{parseStart(state.start)}</b></p>
                 <p>o sua cidade é <b>{state.city}</b></p>
                 <hr/>
-                { quotation.map( (element) =>{
-                    console.log("element",element)
+                { quotation.map( (element,i) =>{
                     return (
-                        <>
+                        <div key={i}>
                             <p>{element.operator} </p>
                             <p>{element.city} </p>
                             <p>{element.accommodation} </p>
@@ -171,7 +207,7 @@ export const FormStep10 = () => {
                             <p>{element.state} </p>
                             <p>{element.tag} </p>
                             <p>{element.type} </p>
-                        </>
+                        </div>
                     )
                 })}
 
