@@ -17,6 +17,8 @@ import { Register } from './pages/admin/Register';
 import { Operator } from './pages/admin/Operator';
 import { MessageDisplay } from './pages/admin/MessageDisplay';
 import { MessageEdit } from './pages/admin/MessageEdit';
+import { PlanDisplay } from './pages/admin/PlanDisplay';
+import { PlanCsv } from './pages/admin/PlanCsv';
 
 export const Router = () => {
     return (
@@ -37,7 +39,8 @@ export const Router = () => {
             <ProtectedRoutes path="/operator" component={Operator} />
             <ProtectedRoutes exact path="/message" component={MessageDisplay} />
             <ProtectedRoutes path="/message/edit/:messageId" component={MessageEdit} />
-            <ProtectedRoutes exact path="/message/edit" component={MessageEdit} />
+            <ProtectedRoutes exact path="/plan" component={PlanDisplay} />
+            <ProtectedRoutes exact path="/plan/csv" component={PlanCsv} />
 
         </BrowserRouter>
     );

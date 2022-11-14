@@ -37,7 +37,7 @@ export async function SendForm(state: State) {
 
 export async function GetQuotation(quotation:any) {
     const { data } = await axios.post(
-        '/plan/list',
+        '/plan/quote',
         quotation,
         {
         headers: {
