@@ -56,7 +56,6 @@ export const FormStep10 = () => {
         if(state.p53 > 0) for(let i=1;i<=state.p53;i++) arr.push('53')       
         if(state.p59 > 0) for(let i=1;i<=state.p59;i++) arr.push('59')       
         if(state.p59 > 0) for(let i=1;i<=state.p59;i++) arr.push('59')  
-        console.log(arr)     
         return arr
     }
 
