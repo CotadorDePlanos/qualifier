@@ -38,9 +38,12 @@ export const Router = () => {
             <Route path="/register" component={Register} />
             <ProtectedRoutes path="/operator" component={Operator} />
             <ProtectedRoutes exact path="/message" component={MessageDisplay} />
-            <ProtectedRoutes path="/message/edit/:messageId" component={MessageEdit} />
+            <ProtectedRoutes exact path="/message/edit" component={MessageEdit} />
+            <ProtectedRoutes exact path="/message/edit/:messageId" component={MessageEdit} />
             <ProtectedRoutes exact path="/plan" component={PlanDisplay} />
             <ProtectedRoutes exact path="/plan/csv" component={PlanCsv} />
+            <ProtectedRoutes exact path="/plan/edit" component={MessageEdit} />
+            <ProtectedRoutes path="/plan/edit/:planId" component={MessageEdit} />
 
         </BrowserRouter>
     );

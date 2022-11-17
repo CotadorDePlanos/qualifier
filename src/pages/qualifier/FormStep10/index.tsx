@@ -45,16 +45,18 @@ export const FormStep10 = () => {
 
     const mountAgeGroup = () => {
         let arr = []
-        if(state.p18 > 0) arr.push('18')       
-        if(state.p23 > 0) arr.push('23')       
-        if(state.p28 > 0) arr.push('28')       
-        if(state.p33 > 0) arr.push('33')       
-        if(state.p38 > 0) arr.push('38')       
-        if(state.p43 > 0) arr.push('43')       
-        if(state.p48 > 0) arr.push('48')       
-        if(state.p53 > 0) arr.push('53')       
-        if(state.p59 > 0) arr.push('59')       
-        if(state.p59 > 0) arr.push('59')       
+
+        if(state.p18 > 0) for(let i=1;i<=state.p18;i++) arr.push('18')       
+        if(state.p23 > 0) for(let i=1;i<=state.p23;i++) arr.push('23')       
+        if(state.p28 > 0) for(let i=1;i<=state.p28;i++) arr.push('28')       
+        if(state.p33 > 0) for(let i=1;i<=state.p33;i++) arr.push('33')       
+        if(state.p38 > 0) for(let i=1;i<=state.p38;i++) arr.push('38')       
+        if(state.p43 > 0) for(let i=1;i<=state.p43;i++) arr.push('43')       
+        if(state.p48 > 0) for(let i=1;i<=state.p48;i++) arr.push('48')       
+        if(state.p53 > 0) for(let i=1;i<=state.p53;i++) arr.push('53')       
+        if(state.p59 > 0) for(let i=1;i<=state.p59;i++) arr.push('59')       
+        if(state.p59 > 0) for(let i=1;i<=state.p59;i++) arr.push('59')  
+        console.log(arr)     
         return arr
     }
 
